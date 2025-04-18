@@ -41,6 +41,19 @@ namespace Donaciones_Api.Controllers
             return usuario;
         }
 
+        [HttpGet("email/{email}")]
+        public async Task<ActionResult<Usuario>> GetUsuarioByEmail(string email)
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return usuario;
+        }
+
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
