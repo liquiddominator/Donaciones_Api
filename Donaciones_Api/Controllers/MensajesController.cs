@@ -111,7 +111,20 @@ namespace Donaciones_Api.Controllers
             return await _context.Mensajes
                 .Where(m => m.UsuarioOrigen == usuarioId || m.UsuarioDestino == usuarioId)
                 .ToListAsync();
-        }//
+        }
 
+        // GET: api/Mensajes/usuario-origen/{id}
+        [HttpGet("usuario-origen/{id}")]
+        public async Task<ActionResult<IEnumerable<Mensaje>>> GetMensajesByUsuarioOrigen(int id)
+        {
+            return await _context.Mensajes.Where(m => m.UsuarioOrigen == id).ToListAsync();
+        }
+
+        // GET: api/Mensajes/usuario-destino/{id}
+        [HttpGet("usuario-destino/{id}")]
+        public async Task<ActionResult<IEnumerable<Mensaje>>> GetMensajesByUsuarioDestino(int id)
+        {
+            return await _context.Mensajes.Where(m => m.UsuarioDestino == id).ToListAsync();
+        }
     }
 }
