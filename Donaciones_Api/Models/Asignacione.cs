@@ -7,17 +7,12 @@ namespace Donaciones_Api.Models;
 public partial class Asignacione
 {
     public int AsignacionId { get; set; }
-
     public int CampaniaId { get; set; }
-
     public string Descripcion { get; set; } = null!;
-
     public decimal Monto { get; set; }
-
     public DateTime? FechaAsignacion { get; set; }
-
+    public string? ImagenUrl { get; set; }
     public int UsuarioId { get; set; }
-
     public string? Comprobante { get; set; }
     [JsonIgnore]
     public virtual Campania? Campania { get; set; } = null;
