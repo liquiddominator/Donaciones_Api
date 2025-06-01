@@ -122,5 +122,17 @@ namespace Donaciones_Api.Controllers
                 .ToListAsync();
         }
 
+        // GET: api/Donaciones/campania/{campaniaId}/cantidad
+        [HttpGet("campania/{campaniaId}/donantes-count")]
+        public async Task<ActionResult<int>> GetCantidadDonantesPorCampania(int campaniaId)
+        {
+            var donantes = await _context.Donaciones
+                .Where(d => d.CampaniaId == campaniaId)
+                .Select(d => d.UsuarioId)
+                .Distinct()
+                .CountAsync();
+
+            return donantes;
+        }
     }
 }
